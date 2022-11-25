@@ -27,18 +27,28 @@ public class TicTacToe {
             }
             placeMarker(gameBoard, playerPosition, "player");
 
+            String results = checkWinner();
+            if(results.length() > 0) {
+                System.out.println(results);
+                break;
+
             Random rand = new Random();
             int cpuPosition = rand.nextInt(9) + 1;
             while(playerPositions.contains(cpuPosition) || cpuPositions.contains(cpuPosition)) {
-                playerPosition = scan.nextInt();
                 System.out.println("Thinking...");
                 cpuPosition = rand.nextInt(9) + 1;
             }
 
             placeMarker(gameBoard, cpuPosition, "cpu");
+
             printGameBoard(gameBoard);
-            String results = checkWinner();
-            System.out.println(results);
+
+            results = checkWinner();
+            if(results.length() > 0) {
+                System.out.println(results);
+                break;
+            }
+
         }
 
 
@@ -121,7 +131,7 @@ public class TicTacToe {
         for (List l : winningMoves) {
             if(playerPositions.containsAll(l)) {
                 return "Congratulations, you won!";
-            } else if(cpuPositions.contains(l)) {
+            } else if(cpuPositions.containsAll(l)) {
                 return "CPU wins! Sorry...";
             } else if(playerPositions.size() + cpuPositions.size() == 9) {
                 return "DRAW!";
