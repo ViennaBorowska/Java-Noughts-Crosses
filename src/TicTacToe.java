@@ -30,12 +30,14 @@ public class TicTacToe {
             String results = checkWinner();
             if(results.length() > 0) {
                 System.out.println(results);
+                printGameBoard(gameBoard);
                 break;
+            }
 
             Random rand = new Random();
             int cpuPosition = rand.nextInt(9) + 1;
             while(playerPositions.contains(cpuPosition) || cpuPositions.contains(cpuPosition)) {
-                System.out.println("Thinking...");
+                System.out.println("Hmm, computer is thinking...");
                 cpuPosition = rand.nextInt(9) + 1;
             }
 
@@ -46,6 +48,7 @@ public class TicTacToe {
             results = checkWinner();
             if(results.length() > 0) {
                 System.out.println(results);
+                printGameBoard(gameBoard);
                 break;
             }
 
@@ -106,6 +109,8 @@ public class TicTacToe {
         }
     }
 
+
+
     public static String checkWinner() {
 
         List topRow = Arrays.asList(1, 2, 3);
@@ -135,6 +140,7 @@ public class TicTacToe {
                 return "CPU wins! Sorry...";
             } else if(playerPositions.size() + cpuPositions.size() == 9) {
                 return "DRAW!";
+
             }
         }
 
